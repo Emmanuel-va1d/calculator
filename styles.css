@@ -4,8 +4,8 @@
 }
 
 div {
-    outline-style: inset;
     outline-color: black;
+    outline-style: inset;
 }
 
 body {
@@ -18,8 +18,7 @@ body {
     width: 600px;
     height: 600px;
     background-color: lightgray;
-    outline-color: black;
-    outline-style: inset;
+    
     border-radius: 10px;
 }
 
@@ -58,21 +57,30 @@ body {
 
 #action {
     width: auto;
-    height: 40px;
+    height: 50px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.clear {
+    padding: 10px;
+    border-radius: 20px;
 }
 
 #input {
     width: auto;
-    height: 410px;
+    height: 400px;
     display: flex;
 }
 
 #numbers {
     width: 60%;
-    height: 410px;
+    height: 400px;
 }
 
 #operators {
     width: 40%;
-    height: 410px;
+    height: 400px;
 }
