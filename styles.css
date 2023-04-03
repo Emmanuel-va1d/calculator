@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 div {
@@ -18,7 +20,8 @@ body {
     width: 600px;
     height: 600px;
     background-color: lightgray;
-    
+    outline-color: black;
+    outline-style: inset;
     border-radius: 10px;
 }
 
@@ -78,6 +81,19 @@ body {
 #numbers {
     width: 60%;
     height: 400px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#numbers > button {
+    margin: 10px;
+    width: 25%;
+    height: 20%;
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 #operators {
