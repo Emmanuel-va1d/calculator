@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 div {
     outline-style: inset;
     outline-color: black;
@@ -12,12 +17,44 @@ body {
 #calculator {
     width: 600px;
     height: 600px;
+    background-color: lightgray;
+    outline-color: black;
+    outline-style: inset;
+    border-radius: 10px;
 }
+
+/* screen */
 
 #screen {
     width: auto;
     height: 150px;
+    background-color: gray;
+    border-radius: 15px;
 }
+
+#history {
+    width: auto;
+    height: 50%;
+}
+
+#history > h2 {
+    padding: 20px;
+    font-weight: 100;
+    color: white;
+}
+
+#output {
+    width: auto;
+    height: 50%;
+    text-align: right;
+}
+
+#output > h1 {
+    padding: 20px;
+    color: rgb(255, 255, 255);
+}
+
+/* action */
 
 #action {
     width: auto;
