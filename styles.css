@@ -1,0 +1,41 @@
+div {
+    outline-style: inset;
+    outline-color: black;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#calculator {
+    width: 600px;
+    height: 600px;
+}
+
+#screen {
+    width: auto;
+    height: 150px;
+}
+
+#action {
+    width: auto;
+    height: 40px;
+}
+
+#input {
+    width: auto;
+    height: 410px;
+    display: flex;
+}
+
+#numbers {
+    width: 60%;
+    height: 410px;
+}
+
+#operators {
+    width: 40%;
+    height: 410px;
+}
