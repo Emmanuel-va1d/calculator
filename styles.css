@@ -89,8 +89,8 @@ body {
 
 #numbers > button {
     margin: 10px;
-    width: 25%;
-    height: 20%;
+    width: 80px;
+    height: 75px;
     border-radius: 20px;
     font-size: 25px;
     font-weight: bold;
@@ -99,4 +99,26 @@ body {
 #operators {
     width: 40%;
     height: 400px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#operators > button:not(:last-child) {
+    margin: 10px;
+    width: 80px;
+    height: 75px;
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.enter {
+    margin: 10px;
+    width: 160px;
+    height: 75px;
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
