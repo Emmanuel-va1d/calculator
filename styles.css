@@ -1,14 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     box-sizing: border-box;
 }
 
-div {
+/*div {
     outline-color: black;
     outline-style: inset;
-}
+}*/
 
 body {
     display: flex;
@@ -32,6 +31,8 @@ body {
     height: 150px;
     background-color: gray;
     border-radius: 15px;
+    outline-color: black;
+    outline-style: inset;
 }
 
 #history {
