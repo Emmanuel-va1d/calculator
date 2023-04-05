@@ -4,10 +4,9 @@
     box-sizing: border-box;
 }
 
-/*div {
-    outline-color: black;
-    outline-style: inset;
-}*/
+div {
+    outline: 1px black solid;*/
+}
 
 body {
     display: flex;
@@ -15,24 +14,31 @@ body {
     margin-top: 50px;
 }
 
+button {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-style:inset;
+
+}
+
 #calculator {
-    width: 600px;
+    width: 550px;
     height: 600px;
-    background-color: lightgray;
-    outline-color: black;
-    outline-style: inset;
+    background-color: #575757;
+    outline: 5px black solid;
     border-radius: 10px;
 }
 
 /* screen */
 
 #screen {
+    margin: 20px 25px 20px 25px;
     width: auto;
-    height: 150px;
-    background-color: gray;
+    height: 110px;
+    background-color: #B2B2B2;
     border-radius: 15px;
-    outline-color: black;
-    outline-style: inset;
+    outline: 5px black ridge;
 }
 
 #history {
@@ -41,9 +47,9 @@ body {
 }
 
 #history > h2 {
-    padding: 20px;
-    font-weight: 100;
-    color: white;
+    padding: 15px;
+    font-weight: 500;
+    color: black;
 }
 
 #output {
@@ -53,8 +59,8 @@ body {
 }
 
 #output > h1 {
-    padding: 20px;
-    color: rgb(255, 255, 255);
+    padding: 15px;
+    color: black;
 }
 
 /* action */
@@ -65,12 +71,17 @@ body {
     display: flex;
     justify-content: right;
     align-items: center;
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 .clear {
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 15px;
+    font-weight: 1000;
+    font-size: 20px;
+    width: 80px;
+    background-color: #FFF438;
+    color: #1A1A1A;
 }
 
 /* input */
@@ -114,14 +125,12 @@ body {
     height: 75px;
     border-radius: 20px;
     font-size: 25px;
-    font-weight: bold;
 }
 
 .enter {
     margin: 10px;
-    width: 160px;
+    width: 180px;
     height: 75px;
     border-radius: 20px;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 30px;
 }
