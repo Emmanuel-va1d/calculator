@@ -5,7 +5,7 @@
 }
 
 div {
-    outline: 1px black solid;*/
+    /*outline: 1px black solid;*/
 }
 
 body {
@@ -49,6 +49,7 @@ button {
 #history > h2 {
     padding: 15px;
     font-weight: 500;
+    font-size: 30px;
     color: black;
 }
 
@@ -61,6 +62,7 @@ button {
 #output > h1 {
     padding: 15px;
     color: black;
+    font-size: 35px;
 }
 
 /* action */
