@@ -4,9 +4,9 @@
     box-sizing: border-box;
 }
 
-div {
-    /*outline: 1px black solid;*/
-}
+/*div {
+    outline: 1px black solid;
+}*/
 
 body {
     display: flex;
@@ -18,7 +18,7 @@ button {
     background-color: #1A1A1A;
     color: #FFFFFF;
     font-weight: bold;
-    border-style:inset;
+    border-style: inset;
 
 }
 
@@ -84,6 +84,17 @@ button {
     width: 80px;
     background-color: #FFF438;
     color: #1A1A1A;
+}
+
+.delete {
+    padding: 10px;
+    margin: 3px 19px 0 0;
+    border-radius: 15px;
+    font-weight: 1000;
+    font-size: 20px;
+    width: 80px;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
 }
 
 /* input */
