@@ -13,6 +13,13 @@ const operate = (x, y) => {
         return divide(x, y);
 };
 
+const containsOperator = () => {
+if (parseInt(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes("-") || s.includes("x") || s.includes("÷")))
+        return true;
+    else
+        return false;
+}
+
 
 /* input */
 const number = document.querySelectorAll(".num");
@@ -27,8 +34,8 @@ const del = document.querySelector(".delete");
 const output = document.querySelector("h1");
 const history = document.querySelector("h2");
 var s = ""
-var num1 = 0;
-var num2 = 0
+var num1;
+var num2;
 
 
 /* event listeners */
@@ -44,12 +51,12 @@ operator.forEach(op => op.addEventListener("click", () => {
 
 equal.addEventListener("click", () => {
     history.textContent = s;
-    console.log(s);
+    if (output.textContent !== "0" && containsOperator() == true) {
     num1 = parseInt(s.slice(0, s.indexOf(" ")));
     num2 = parseInt(s.slice(s.lastIndexOf(" ") + 1));
     s = operate(num1, num2);
-    console.log(s);
     output.textContent = s;
+    }
 })
 
 clear.addEventListener("click", () => {
