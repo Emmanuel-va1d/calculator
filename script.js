@@ -5,16 +5,15 @@ const divide = (x, y) => x / y;
 const operate = (x, y) => {
     if (s.includes("+"))
         return add(x, y);
-    else if (s.includes("-"))
+    else if (s.includes(" - "))
         return subtract(x, y);
     else if (s.includes("x"))
         return multiply(x, y);
     else if (s.includes("÷"))
         return divide(x, y);
 };
-
 const containsOperator = () => {
-if (parseInt(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes("-") || s.includes("x") || s.includes("÷")))
+if (parseInt(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷")))
         return true;
     else
         return false;
@@ -26,6 +25,7 @@ const number = document.querySelectorAll(".num");
 const operator = document.querySelectorAll(".operator");
 const equal = document.querySelector(".enter");
 const decimal = document.querySelector(".decimal");
+const plusOrMinus = document.querySelector(".sign");
 
 /* action */
 const clear = document.querySelector(".clear");
@@ -58,6 +58,19 @@ decimal.addEventListener("click", () => {
         output.textContent = s;
     }
 });
+
+plusOrMinus.addEventListener("click", () => {
+    if (output.textContent != 0 && !containsOperator()) {
+        num1 = Number(s * -1);
+        s = s.replace(s, num1);
+        output.textContent = s;
+    }
+    else if (containsOperator()) {
+        num2 = Number(s.slice(s.lastIndexOf(" ") + 1) * -1);
+        s = s.replace(s.slice(s.lastIndexOf(" ") + 1), num2);
+        output.textContent = s;
+    }
+})
 
 equal.addEventListener("click", () => {
     history.textContent = s;
