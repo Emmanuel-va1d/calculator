@@ -25,6 +25,7 @@ if (parseInt(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes(
 const number = document.querySelectorAll(".num");
 const operator = document.querySelectorAll(".operator");
 const equal = document.querySelector(".enter");
+const decimal = document.querySelector(".decimal");
 
 /* action */
 const clear = document.querySelector(".clear");
@@ -49,12 +50,17 @@ operator.forEach(op => op.addEventListener("click", () => {
     output.textContent = s;
 }));
 
+decimal.addEventListener("click", () => {
+    s += "."
+    output.textContent = s;
+});
+
 equal.addEventListener("click", () => {
     history.textContent = s;
-    if (output.textContent !== "0" && containsOperator() == true) {
-    num1 = parseInt(s.slice(0, s.indexOf(" ")));
-    num2 = parseInt(s.slice(s.lastIndexOf(" ") + 1));
-    s = operate(num1, num2);
+    if (output.textContent !== "0" && containsOperator()) {
+    num1 = Number(s.slice(0, s.indexOf(" ")));
+    num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
+    s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
     output.textContent = s;
     }
 })
