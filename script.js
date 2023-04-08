@@ -33,6 +33,17 @@ operator.forEach(op => op.addEventListener("click", () => {
 
 equal.addEventListener("click", () => {
     history.textContent = s;
+    let num1 = parseInt(s.slice(0, s.indexOf(" ")));
+    let num2 = parseInt(s.slice(s.lastIndexOf(" ") + 1));
+    if (s.includes("+"))
+        s = operate(num1, num2, add);
+    else if (s.includes("-"))
+        s = operate(num1, num2, subtract);
+    else if (s.includes("x"))
+        s = operate(num1, num2, multiply);
+    else if (s.includes("÷"))
+        s = operate(num1, num2, divide);
+    output.textContent = s;
 })
 
 clear.addEventListener("click", () => {
