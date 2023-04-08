@@ -51,17 +51,21 @@ operator.forEach(op => op.addEventListener("click", () => {
 }));
 
 decimal.addEventListener("click", () => {
-    s += "."
-    output.textContent = s;
+    if (!s.includes(".")) {
+        if (output.textContent == "0")
+            s += "0";
+        s += ".";
+        output.textContent = s;
+    }
 });
 
 equal.addEventListener("click", () => {
     history.textContent = s;
     if (output.textContent !== "0" && containsOperator()) {
-    num1 = Number(s.slice(0, s.indexOf(" ")));
-    num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
-    s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
-    output.textContent = s;
+        num1 = Number(s.slice(0, s.indexOf(" ")));
+        num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
+        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
+        output.textContent = s;
     }
 })
 
