@@ -37,14 +37,19 @@ equal.addEventListener("click", () => {
 
 clear.addEventListener("click", () => {
     output.textContent = "0";
-    history.textContent = "-";
+    history.textContent = "";
     s = "";
 })
 
 del.addEventListener("click", () => {
     if (output.textContent !== "0" && s.length !== 1) {
-        s = s.slice(0, -1)
+        if (s.charAt(s.length - 1) == " ") {
+        s = s.slice(0, -3)
         output.textContent = s;
+        } else {
+            s = s.slice(0, -1)
+            output.textContent = s;
+        }
     } else if (s.length == 1) {
         s = ""
         output.textContent = "0";
