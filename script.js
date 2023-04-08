@@ -2,7 +2,16 @@ const add = (x, y) => x + y;
 const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
-const operate = (x, y, op) => op(x, y);
+const operate = (x, y) => {
+    if (s.includes("+"))
+        return add(x, y);
+    else if (s.includes("-"))
+        return subtract(x, y);
+    else if (s.includes("x"))
+        return multiply(x, y);
+    else if (s.includes("÷"))
+        return divide(x, y);
+};
 
 
 /* input */
@@ -18,6 +27,8 @@ const del = document.querySelector(".delete");
 const output = document.querySelector("h1");
 const history = document.querySelector("h2");
 var s = ""
+var num1 = 0;
+var num2 = 0
 
 
 /* event listeners */
@@ -33,16 +44,11 @@ operator.forEach(op => op.addEventListener("click", () => {
 
 equal.addEventListener("click", () => {
     history.textContent = s;
-    let num1 = parseInt(s.slice(0, s.indexOf(" ")));
-    let num2 = parseInt(s.slice(s.lastIndexOf(" ") + 1));
-    if (s.includes("+"))
-        s = operate(num1, num2, add);
-    else if (s.includes("-"))
-        s = operate(num1, num2, subtract);
-    else if (s.includes("x"))
-        s = operate(num1, num2, multiply);
-    else if (s.includes("÷"))
-        s = operate(num1, num2, divide);
+    console.log(s);
+    num1 = parseInt(s.slice(0, s.indexOf(" ")));
+    num2 = parseInt(s.slice(s.lastIndexOf(" ") + 1));
+    s = operate(num1, num2);
+    console.log(s);
     output.textContent = s;
 })
 
