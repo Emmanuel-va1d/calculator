@@ -19,6 +19,8 @@ if (Number(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes(" 
         return false;
 }
 
+/* style */
+const button = document.querySelectorAll("button");
 
 /* input */
 const number = document.querySelectorAll(".num");
@@ -40,6 +42,15 @@ var num2;
 
 
 /* event listeners */
+
+button.forEach(btn => btn.addEventListener("mousedown", () => {
+    btn.style.borderStyle = "outset";
+}));
+
+button.forEach(btn => btn.addEventListener("mouseup", () => {
+    btn.style.borderStyle = "inset";
+}))
+
 number.forEach(num => num.addEventListener("click", () => {
     s += num.textContent;
     output.textContent = s;
