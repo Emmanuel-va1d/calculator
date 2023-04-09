@@ -13,7 +13,7 @@ const operate = (x, y) => {
         return divide(x, y);
 };
 const containsOperator = () => {
-if (Number(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷")))
+if (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷"))
         return true;
     else
         return false;
@@ -57,8 +57,14 @@ number.forEach(num => num.addEventListener("click", () => {
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
-    s += ` ${op.textContent} `;
-    output.textContent = s;
+    if (s.lastIndexOf(" ") !== s.length - 1) {
+        s += ` ${op.textContent} `;
+        output.textContent = s;
+    } 
+    else if (output.textContent == "0") {
+        s += `0 ${op.textContent} `;
+        output.textContent = s;
+    }
 }));
 
 decimal.addEventListener("click", () => {
@@ -90,6 +96,7 @@ equal.addEventListener("click", () => {
         num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
         s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
         output.textContent = s;
+        s = output.textContent;
     }
 })
 
