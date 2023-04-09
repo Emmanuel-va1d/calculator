@@ -13,7 +13,7 @@ const operate = (x, y) => {
         return divide(x, y);
 };
 const containsOperator = () => {
-if (parseInt(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷")))
+if (Number(s.slice(s.lastIndexOf(" ") + 1)) && (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷")))
         return true;
     else
         return false;
@@ -67,7 +67,7 @@ plusOrMinus.addEventListener("click", () => {
     }
     else if (containsOperator()) {
         num2 = Number(s.slice(s.lastIndexOf(" ") + 1) * -1);
-        s = s.replace(s.slice(s.lastIndexOf(" ") + 1), num2);
+        s = s.replace(` ${s.slice(s.lastIndexOf(" ") + 1)}`, ` ${num2}`);
         output.textContent = s;
     }
 })
