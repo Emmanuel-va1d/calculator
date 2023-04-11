@@ -3,13 +3,13 @@ const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
 const operate = (x, y) => {
-    if (s.includes("+"))
+    if (term[1] == ("+"))
         return add(x, y);
-    else if (s.includes(" - "))
+    else if (term[1] == ("-"))
         return subtract(x, y);
-    else if (s.includes("x"))
+    else if (term[1] == ("x"))
         return multiply(x, y);
-    else if (s.includes("÷"))
+    else if (term[1] == ("÷"))
         return divide(x, y);
 };
 const containsOperator = () => {
@@ -41,6 +41,7 @@ const history = document.querySelector("h2");
 var s = ""
 var num1;
 var num2;
+var term;
 
 
 /* event listeners */
@@ -92,20 +93,24 @@ plusOrMinus.addEventListener("click", () => {
 })
 
 const containsMultiple = () => {
+    term = s.split(" ");
     if (s.split(" ").length - 1 > 2) {
-        num1 = Number(s.slice(0, s.indexOf(" ")));
+        num1 = Number(term[0]);
         console.log(num1);
-        num2 = Number(s.slice(s.indexOf(" ") + 3, s.lastIndexOf(" ") - 2));
+        num2 = Number(term[2]);
         console.log(num2);
-        let temp = s.slice(s.lastIndexOf(" ") - 2);
+        let temp = s;
+        console.log(temp);
         s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
-        s += temp;
+        console.log(s);
+        s = temp.replace(`${term[0]} ${term[1]} ${term[2]}`, s)
+        console.log(s);
         return containsMultiple();
     }
     else if (s.split(" ").length - 1 == 2) {
-        num1 = Number(s.slice(0, s.indexOf(" ")));
+        num1 = Number(term[0]);
         console.log(num1);
-        num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
+        num2 = Number(term[2]);
         console.log(num2);
         s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
     }
