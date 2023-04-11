@@ -19,6 +19,8 @@ if (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷"))
         return false;
 }
 
+
+
 /* style */
 const button = document.querySelectorAll("button");
 
@@ -89,12 +91,30 @@ plusOrMinus.addEventListener("click", () => {
     }
 })
 
+const containsMultiple = () => {
+    if (s.split(" ").length - 1 > 2) {
+        num1 = Number(s.slice(0, s.indexOf(" ")));
+        console.log(num1);
+        num2 = Number(s.slice(s.indexOf(" ") + 3, s.lastIndexOf(" ") - 2));
+        console.log(num2);
+        let temp = s.slice(s.lastIndexOf(" ") - 2);
+        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
+        s += temp;
+        return containsMultiple();
+    }
+    else if (s.split(" ").length - 1 == 2) {
+        num1 = Number(s.slice(0, s.indexOf(" ")));
+        console.log(num1);
+        num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
+        console.log(num2);
+        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
+    }
+}
+
 equal.addEventListener("click", () => {
     history.textContent = s;
     if (output.textContent !== "0" && containsOperator()) {
-        num1 = Number(s.slice(0, s.indexOf(" ")));
-        num2 = Number(s.slice(s.lastIndexOf(" ") + 1));
-        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
+        containsMultiple()
         output.textContent = s;
         s = output.textContent;
     }
