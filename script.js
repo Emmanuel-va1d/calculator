@@ -82,7 +82,7 @@ plusOrMinus.addEventListener("click", () => {
         s = s.replace(s, num1);
         output.textContent = s;
     }
-    else if (containsOperator()) {
+    else if (containsOperator() && s.lastIndexOf(" ") != s.length - 1) {
         num2 = Number(s.slice(s.lastIndexOf(" ") + 1) * -1);
         s = s.replace(` ${s.slice(s.lastIndexOf(" ") + 1)}`, ` ${num2}`);
         output.textContent = s;
