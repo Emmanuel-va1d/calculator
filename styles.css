@@ -114,7 +114,7 @@ button {
 }
 
 #numbers {
-    width: 60%;
+    width: 330px;
     height: 400px;
     padding: 10px;
     display: flex;
