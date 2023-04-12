@@ -60,7 +60,12 @@ number.forEach(num => num.addEventListener("click", () => {
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
-    if (s.lastIndexOf(" ") !== s.length - 1) {
+    if (s.split(" ").length == 3) {
+        ENTER();
+        s += ` ${op.textContent} `;
+        output.textContent = s;
+    }
+    else if (s.lastIndexOf(" ") !== s.length - 1 && s.split(" ").length < 3) {
         s += ` ${op.textContent} `;
         output.textContent = s;
     } 
@@ -94,34 +99,13 @@ plusOrMinus.addEventListener("click", SIGN = () => {
     }
 })
 
-const containsMultiple = () => {
-    term = s.split(" ");
-    if (s.split(" ").length - 1 > 2) {
-        num1 = Number(term[0]);
-        console.log(num1);
-        num2 = Number(term[2]);
-        console.log(num2);
-        let temp = s;
-        console.log(temp);
-        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
-        console.log(s);
-        s = temp.replace(`${term[0]} ${term[1]} ${term[2]}`, s)
-        console.log(s);
-        return containsMultiple();
-    }
-    else if (s.split(" ").length - 1 == 2) {
-        num1 = Number(term[0]);
-        console.log(num1);
-        num2 = Number(term[2]);
-        console.log(num2);
-        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
-    }
-}
-
 equal.addEventListener("click", ENTER = () => {
     history.textContent = s;
+    term = s.split(" ");
     if (output.textContent !== "0" && containsOperator()) {
-        containsMultiple()
+        num1 = Number(term[0]);
+        num2 = Number(term[2]);
+        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
         output.textContent = s;
         s = output.textContent;
     }
@@ -171,7 +155,12 @@ window.addEventListener("keydown", e => {
             if (op[i] == e.key) {
                 op[2] = "x";
                 op[3] = "÷";
-                if (s.lastIndexOf(" ") !== s.length - 1) {
+                if (s.split(" ").length == 3) {
+                    ENTER();
+                    s += ` ${op[i]} `;
+                    output.textContent = s;
+                }
+                else if (s.lastIndexOf(" ") !== s.length - 1 && s.split(" ").length < 3) {
                     s += ` ${op[i]} `;
                     output.textContent = s;
                 } 
