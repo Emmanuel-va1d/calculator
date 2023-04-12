@@ -94,6 +94,17 @@ button {
     color: #FFFFFF;
 }
 
+.history {
+    padding: 10px;
+    margin: 3px 246px 0 0;
+    border-radius: 15px;
+    font-weight: 1000;
+    font-size: 20px;
+    width: 80px;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+}
+
 /* input */
 
 #input {

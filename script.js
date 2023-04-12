@@ -27,6 +27,7 @@ const sqrt = document.querySelector(".sqrt");
 /* action */
 const clear = document.querySelector(".clear");
 const del = document.querySelector(".delete");
+const his = document.querySelector(".history");
 
 /* output */
 const output = document.querySelector("h1");
@@ -163,6 +164,14 @@ del.addEventListener("click", DELETE = () => {
     }
 });
 
+his.addEventListener("click", HIS = () => {
+    if (history.textContent != "") {
+        s = history.textContent;
+        history.textContent = output.textContent;
+        output.textContent = s;
+    }
+});
+
 /* key events */
 
 window.addEventListener("keydown", e => {
@@ -175,6 +184,7 @@ window.addEventListener("keydown", e => {
     else if (e.key == "_") SQRT();
     else if (e.key == "s") SIGN();
     else if (e.key == "c") CLEAR();
+    else if (e.key == "h") HIS();
     else if (e.key == "Enter" || e.key == "=") ENTER();
     else if (e.key == "Backspace" || e.key == "Delete") DELETE();
     else {
