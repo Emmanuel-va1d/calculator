@@ -3,14 +3,10 @@ const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
 const operate = (x, y) => {
-    if (term[1] == ("+"))
-        return add(x, y);
-    else if (term[1] == ("-"))
-        return subtract(x, y);
-    else if (term[1] == ("x"))
-        return multiply(x, y);
-    else if (term[1] == ("÷"))
-        return divide(x, y);
+    if (term[1] == ("+")) return add(x, y);
+    else if (term[1] == ("-")) return subtract(x, y);
+    else if (term[1] == ("x")) return multiply(x, y);
+    else if (term[1] == ("÷")) return divide(x, y);
 };
 const containsOperator = () => {
 return s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷");
@@ -59,7 +55,7 @@ number.forEach(num => num.addEventListener("click", () => {
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
-    if (s.split(" ").length == 3) {
+    if (s.split(" ").length == 3 && s !== "Infinity") {
         ENTER();
         s += ` ${op.textContent} `;
         output.textContent = s;
@@ -135,8 +131,14 @@ equal.addEventListener("click", ENTER = () => {
         num1 = Number(term[0]);
         num2 = Number(term[2]);
         s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 7) / 10 ** 7;
-        output.textContent = s;
-        s = output.textContent;
+        if (s == "Infinity") { 
+            output.textContent = "UNDEFINED";
+            s = "";
+        }
+        else {
+            output.textContent = s;
+            s = output.textContent;
+        }
     }
 })
 
@@ -168,27 +170,20 @@ window.addEventListener("keydown", e => {
         s += e.key;
         output.textContent = s;
     }
-    else if (e.key == "Enter" || e.key == "=")
-        ENTER();
-    else if (e.key == ".")
-        POINT();
-    else if (e.key == "%")
-        PER();
-    else if (e.key == "s")
-        SQRT();
-    else if (e.key == "s")
-        SIGN();
-    else if (e.key == "c")
-        CLEAR();
-    else if (e.key == "Backspace" || e.key == "Delete")
-        DELETE();
+    else if (e.key == ".") POINT();
+    else if (e.key == "%") PER();
+    else if (e.key == "_") SQRT();
+    else if (e.key == "s") SIGN();
+    else if (e.key == "c") CLEAR();
+    else if (e.key == "Enter" || e.key == "=") ENTER();
+    else if (e.key == "Backspace" || e.key == "Delete") DELETE();
     else {
         let op = ["+", "-", "*", "/"];
         for (let i = 0; i < op.length; i++) {
             if (op[i] == e.key) {
                 op[2] = "x";
                 op[3] = "÷";
-                if (s.split(" ").length == 3) {
+                if (s.split(" ").length == 3 && s !== "Infinity") {
                     ENTER();
                     s += ` ${op[i]} `;
                     output.textContent = s;
