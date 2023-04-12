@@ -70,7 +70,7 @@ operator.forEach(op => op.addEventListener("click", () => {
     }
 }));
 
-decimal.addEventListener("click", () => {
+decimal.addEventListener("click", POINT = () => {
     if (output.textContent == "0") {
         s = "0.";
         output.textContent = s;
@@ -81,7 +81,7 @@ decimal.addEventListener("click", () => {
     }
 });
 
-plusOrMinus.addEventListener("click", () => {
+plusOrMinus.addEventListener("click", SIGN = () => {
     if (output.textContent != 0 && !containsOperator()) {
         num1 = Number(s * -1);
         s = s.replace(s, num1);
@@ -118,7 +118,7 @@ const containsMultiple = () => {
     }
 }
 
-equal.addEventListener("click", () => {
+equal.addEventListener("click", ENTER = () => {
     history.textContent = s;
     if (output.textContent !== "0" && containsOperator()) {
         containsMultiple()
@@ -127,13 +127,13 @@ equal.addEventListener("click", () => {
     }
 })
 
-clear.addEventListener("click", () => {
+clear.addEventListener("click", CLEAR = () => {
     output.textContent = "0";
     history.textContent = "";
     s = "";
 })
 
-del.addEventListener("click", () => {
+del.addEventListener("click", DELETE = () => {
     if (output.textContent !== "0" && s.length !== 1) {
         if (s.charAt(s.length - 1) == " ") {
         s = s.slice(0, -3)
@@ -145,5 +145,41 @@ del.addEventListener("click", () => {
     } else if (s.length == 1) {
         s = ""
         output.textContent = "0";
+    }
+});
+
+/* key events */
+
+window.addEventListener("keydown", e => {
+    if (Number(e.key) >= 0) {
+        s += e.key;
+        output.textContent = s;
+    }
+    else if (e.key == "Enter")
+        ENTER();
+    else if (e.key == ".")
+        POINT();
+    else if (e.key == "s")
+        SIGN();
+    else if (e.key == "c")
+        CLEAR();
+    else if (e.key == "Backspace" || e.key == "Delete")
+        DELETE();
+    else {
+        let op = ["+", "-", "*", "/"];
+        for (let i = 0; i < op.length; i++) {
+            if (op[i] == e.key) {
+                op[2] = "x";
+                op[3] = "÷";
+                if (s.lastIndexOf(" ") !== s.length - 1) {
+                    s += ` ${op[i]} `;
+                    output.textContent = s;
+                } 
+                else if (output.textContent == "0") {
+                    s += `0 ${op[i]} `;
+                    output.textContent = s;
+                }
+            }
+        }
     }
 });
