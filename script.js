@@ -56,16 +56,22 @@ number.forEach(num => num.addEventListener("click", () => {
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
-    if (s.split(" ").length == 3 && s !== "Infinity") {
+    if (s.lastIndexOf(" ") !== s.length - 1) {
         ENTER();
+        if (output.textContent !== "UNDEFINED") {
         s += ` ${op.textContent} `;
         output.textContent = s;
+        }
     }
-    else if (s.lastIndexOf(" ") !== s.length - 1 && s.split(" ").length < 3) {
+    else if (s.lastIndexOf(" ") == s.length - 1) {
+        s = s.replace(s.slice(s.indexOf(" ")), ` ${op.textContent} `);
+        output.textContent = s;
+    }
+    else if (s.split(" ").length == 2) {
         s += ` ${op.textContent} `;
         output.textContent = s;
     } 
-    else if (output.textContent == "0") {
+    else if (output.textContent == "0" || output.textContent == "UNDEFINED") {
         s += `0 ${op.textContent} `;
         output.textContent = s;
     }
@@ -193,16 +199,22 @@ window.addEventListener("keydown", e => {
             if (op[i] == e.key) {
                 op[2] = "x";
                 op[3] = "÷";
-                if (s.split(" ").length == 3 && s !== "Infinity") {
+                if (s.lastIndexOf(" ") !== s.length - 1) {
                     ENTER();
-                    s += ` ${op[i]} `;
+                    if (output.textContent !== "UNDEFINED") {
+                        s += ` ${op[i]} `;
+                        output.textContent = s;
+                    }
+                }
+                else if (s.lastIndexOf(" ") == s.length - 1) {
+                    s = s.replace(s.slice(s.indexOf(" ")), ` ${op[i]} `);
                     output.textContent = s;
                 }
-                else if (s.lastIndexOf(" ") !== s.length - 1 && s.split(" ").length < 3) {
+                else if (s.split(" ").length < 3) {
                     s += ` ${op[i]} `;
                     output.textContent = s;
                 } 
-                else if (output.textContent == "0") {
+                else if (output.textContent == "0" || output.textContent == "UNDEFINED") {
                     s += `0 ${op[i]} `;
                     output.textContent = s;
                 }
