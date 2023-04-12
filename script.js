@@ -52,8 +52,10 @@ button.forEach(btn => btn.addEventListener("mouseup", () => {
 }))
 
 number.forEach(num => num.addEventListener("click", () => {
-    s += num.textContent;
-    output.textContent = s;
+    if (s.length < 15) {
+        s += num.textContent;
+        output.textContent = s;
+    }
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
@@ -162,11 +164,11 @@ del.addEventListener("click", DELETE = () => {
 /* key events */
 
 window.addEventListener("keydown", e => {
-    if (Number(e.key) >= 0) {
+    if (Number(e.key) >= 0 && s.length < 15) {
         s += e.key;
         output.textContent = s;
     }
-    else if (e.key == "Enter")
+    else if (e.key == "Enter" || e.key == "=")
         ENTER();
     else if (e.key == ".")
         POINT();
