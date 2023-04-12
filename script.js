@@ -71,9 +71,11 @@ operator.forEach(op => op.addEventListener("click", () => {
 }));
 
 decimal.addEventListener("click", () => {
-    if (!s.includes(".")) {
-        if (output.textContent == "0")
-            s += "0";
+    if (output.textContent == "0") {
+        s = "0.";
+        output.textContent = s;
+    } 
+    else if (!s.includes(".") || s.lastIndexOf(".") < s.lastIndexOf(" ")){
         s += ".";
         output.textContent = s;
     }
