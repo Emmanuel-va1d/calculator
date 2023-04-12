@@ -13,13 +13,8 @@ const operate = (x, y) => {
         return divide(x, y);
 };
 const containsOperator = () => {
-if (s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷"))
-        return true;
-    else
-        return false;
+return s.includes("+") || s.includes(" - ") || s.includes("x") || s.includes("÷");
 }
-
-
 
 /* style */
 const button = document.querySelectorAll("button");
