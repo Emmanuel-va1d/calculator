@@ -7,3 +7,19 @@ the functionality will be created in the script file, while the user interface w
 The calculator should have functions for adding, subtracting, multiplying and dividing.
 
 There should be buttons meant for entering and clearing the workspace
+
+As of now, the keys for the calculator are:
+BTN     Keys
+0-9:    0-9
++:      +
+-:      -
+x:      *
+÷:      /
+=:      Enter or =
+Del:    Backspace or Delete
+AC:     c
+HIS:    h
+±:      s
+.:      .
+%:      %
+√:      _
