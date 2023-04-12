@@ -25,6 +25,7 @@ const operator = document.querySelectorAll(".operator");
 const equal = document.querySelector(".enter");
 const decimal = document.querySelector(".decimal");
 const plusOrMinus = document.querySelector(".sign");
+const percentage = document.querySelector(".percentage");
 
 /* action */
 const clear = document.querySelector(".clear");
@@ -69,6 +70,19 @@ operator.forEach(op => op.addEventListener("click", () => {
         output.textContent = s;
     }
 }));
+
+percentage.addEventListener("click", PER = () => {
+    if (output.textContent != 0 && !containsOperator()) {
+        num1 = Number(s / 100);
+        s = s.replace(s, num1);
+        output.textContent = s;
+    }
+    else if (containsOperator() && s.lastIndexOf(" ") != s.length - 1) {
+        num2 = Number(s.slice(s.lastIndexOf(" ") + 1) / 100);
+        s = s.replace(` ${s.slice(s.lastIndexOf(" ") + 1)}`, ` ${num2}`);
+        output.textContent = s;
+    }
+});
 
 decimal.addEventListener("click", POINT = () => {
     if (output.textContent == "0") {
@@ -138,6 +152,8 @@ window.addEventListener("keydown", e => {
         ENTER();
     else if (e.key == ".")
         POINT();
+    else if (e.key == "%")
+        PER();
     else if (e.key == "s")
         SIGN();
     else if (e.key == "c")
