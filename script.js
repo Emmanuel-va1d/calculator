@@ -26,6 +26,7 @@ const equal = document.querySelector(".enter");
 const decimal = document.querySelector(".decimal");
 const plusOrMinus = document.querySelector(".sign");
 const percentage = document.querySelector(".percentage");
+const sqrt = document.querySelector(".sqrt");
 
 /* action */
 const clear = document.querySelector(".clear");
@@ -74,15 +75,32 @@ operator.forEach(op => op.addEventListener("click", () => {
 percentage.addEventListener("click", PER = () => {
     if (output.textContent != 0 && !containsOperator()) {
         num1 = Number(s / 100);
+        num1 = Math.round((num1 + Number.EPSILON) * 10 ** 7) / 10 ** 7;
         s = s.replace(s, num1);
         output.textContent = s;
     }
     else if (containsOperator() && s.lastIndexOf(" ") != s.length - 1) {
         num2 = Number(s.slice(s.lastIndexOf(" ") + 1) / 100);
+        num2 = Math.round((num2 + Number.EPSILON) * 10 ** 7) / 10 ** 7;
         s = s.replace(` ${s.slice(s.lastIndexOf(" ") + 1)}`, ` ${num2}`);
         output.textContent = s;
     }
 });
+
+sqrt.addEventListener("click", SQRT = () => {
+    if (output.textContent != 0 && !containsOperator()) {
+        num1 = Math.sqrt(Number(s));
+        num1 = Math.round((num1 + Number.EPSILON) * 10 ** 7) / 10 ** 7;
+        s = s.replace(s, num1);
+        output.textContent = s;
+    }
+    else if (containsOperator() && s.lastIndexOf(" ") != s.length - 1) {
+        num2 = Math.sqrt(Number(s.slice(s.lastIndexOf(" ") + 1)));
+        num2 = Math.round((num2 + Number.EPSILON) * 10 ** 7) / 10 ** 7;
+        s = s.replace(` ${s.slice(s.lastIndexOf(" ") + 1)}`, ` ${num2}`);
+        output.textContent = s;
+    }
+})
 
 decimal.addEventListener("click", POINT = () => {
     if (output.textContent == "0") {
@@ -114,7 +132,7 @@ equal.addEventListener("click", ENTER = () => {
     if (output.textContent !== "0" && containsOperator()) {
         num1 = Number(term[0]);
         num2 = Number(term[2]);
-        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 5) / 10 ** 5;
+        s = Math.round((operate(num1, num2) + Number.EPSILON) * 10 ** 7) / 10 ** 7;
         output.textContent = s;
         s = output.textContent;
     }
@@ -154,6 +172,8 @@ window.addEventListener("keydown", e => {
         POINT();
     else if (e.key == "%")
         PER();
+    else if (e.key == "s")
+        SQRT();
     else if (e.key == "s")
         SIGN();
     else if (e.key == "c")
