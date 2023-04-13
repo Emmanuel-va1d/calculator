@@ -60,20 +60,17 @@ number.forEach(num => num.addEventListener("click", () => {
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
-    if (s.split(" ").length <= 2) {
-        console.log(3);
+    if (s.split(" ").length <= 2 && s.length < 18) {
         s += ` ${op.textContent} `;
         output.textContent = s;
     }
     else if (s.lastIndexOf(" ") == s.length - 1) {
-        console.log(2);
         s = s.replace(s.slice(s.indexOf(" ")), ` ${op.textContent} `);
         output.textContent = s;
     }
     else if (s.lastIndexOf(" ") !== s.length - 1) {
-        console.log(1);
         ENTER();
-        if (output.textContent !== "UNDEFINED") {
+        if (output.textContent !== "UNDEFINED" && s.length < 18) {
             s += ` ${op.textContent} `;
             output.textContent = s;
         }
@@ -212,7 +209,7 @@ window.addEventListener("keydown", e => {
             if (op[i] == e.key) {
                 op[2] = "x";
                 op[3] = "÷";
-                if (s.split(" ").length <= 2) {
+                if (s.split(" ").length <= 2 && s.length < 18) {
                     s += ` ${op[i]} `;
                     output.textContent = s;
                 }
@@ -222,7 +219,7 @@ window.addEventListener("keydown", e => {
                 }
                 else if (s.lastIndexOf(" ") !== s.length - 1) {
                     ENTER();
-                    if (output.textContent !== "UNDEFINED") {
+                    if (output.textContent !== "UNDEFINED" && s.length < 18) {
                         s += ` ${op[i]} `;
                         output.textContent = s;
                     }
