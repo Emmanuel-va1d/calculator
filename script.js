@@ -49,27 +49,34 @@ button.forEach(btn => btn.addEventListener("mouseup", () => {
 }))
 
 number.forEach(num => num.addEventListener("click", () => {
-    if (s.length < 15) {
+    if (s.length < 9) {
+        s += num.textContent;
+        output.textContent = s;
+    }
+    else if (s.length < 21 && containsOperator()) {
         s += num.textContent;
         output.textContent = s;
     }
 }));
 
 operator.forEach(op => op.addEventListener("click", () => {
-    if (s.lastIndexOf(" ") !== s.length - 1) {
-        ENTER();
-        if (output.textContent !== "UNDEFINED") {
+    if (s.split(" ").length <= 2) {
+        console.log(3);
         s += ` ${op.textContent} `;
         output.textContent = s;
-        }
     }
     else if (s.lastIndexOf(" ") == s.length - 1) {
+        console.log(2);
         s = s.replace(s.slice(s.indexOf(" ")), ` ${op.textContent} `);
         output.textContent = s;
     }
-    else if (s.split(" ").length == 2) {
-        s += ` ${op.textContent} `;
-        output.textContent = s;
+    else if (s.lastIndexOf(" ") !== s.length - 1) {
+        console.log(1);
+        ENTER();
+        if (output.textContent !== "UNDEFINED") {
+            s += ` ${op.textContent} `;
+            output.textContent = s;
+        }
     } 
     else if (output.textContent == "0" || output.textContent == "UNDEFINED") {
         s += `0 ${op.textContent} `;
@@ -181,9 +188,15 @@ his.addEventListener("click", HIS = () => {
 /* key events */
 
 window.addEventListener("keydown", e => {
-    if (Number(e.key) >= 0 && s.length < 15) {
-        s += e.key;
-        output.textContent = s;
+    if (Number(e.key) >= 0) {
+        if (s.length < 9) {
+            s += e.key;
+            output.textContent = s;
+        }
+        else if (s.length < 21 && containsOperator()) {
+            s += e.key
+            output.textContent = s;
+        }
     }
     else if (e.key == ".") POINT();
     else if (e.key == "%") PER();
@@ -199,20 +212,20 @@ window.addEventListener("keydown", e => {
             if (op[i] == e.key) {
                 op[2] = "x";
                 op[3] = "÷";
-                if (s.lastIndexOf(" ") !== s.length - 1) {
-                    ENTER();
-                    if (output.textContent !== "UNDEFINED") {
-                        s += ` ${op[i]} `;
-                        output.textContent = s;
-                    }
+                if (s.split(" ").length <= 2) {
+                    s += ` ${op[i]} `;
+                    output.textContent = s;
                 }
                 else if (s.lastIndexOf(" ") == s.length - 1) {
                     s = s.replace(s.slice(s.indexOf(" ")), ` ${op[i]} `);
                     output.textContent = s;
                 }
-                else if (s.split(" ").length < 3) {
-                    s += ` ${op[i]} `;
-                    output.textContent = s;
+                else if (s.lastIndexOf(" ") !== s.length - 1) {
+                    ENTER();
+                    if (output.textContent !== "UNDEFINED") {
+                        s += ` ${op[i]} `;
+                        output.textContent = s;
+                    }
                 } 
                 else if (output.textContent == "0" || output.textContent == "UNDEFINED") {
                     s += `0 ${op[i]} `;
